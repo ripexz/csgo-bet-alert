@@ -1,0 +1,27 @@
+{
+	"manifest_version": 2,
+
+	"name": "CS:GO Bet Alert",
+	"description": "CS:GO Bet Alert lists any active games on CS:GO Lounge so that you never miss the chance to lose your rares!",
+	"version": "1.0",
+
+	"icons": {
+		"16": "icon16.png",
+    	"48": "icon48.png",
+    	"128": "icon128.png"
+    },
+
+	"permissions": [
+		"http://*/*",
+		"tabs"
+	],
+
+	"background": {
+		"scripts": ["badge.min.js"]
+	},
+
+	"browser_action": {
+		"default_icon": "icon48.png",
+		"default_popup": "popup.html"
+	}
+}
