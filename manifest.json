@@ -18,7 +18,7 @@
 	],
 
 	"background": {
-		"scripts": ["badge.js"]
+		"scripts": ["badge.min.js"]
 	},
 
 	"browser_action": {
