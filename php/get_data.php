@@ -9,7 +9,7 @@
 	if ( !$db ) {
 		die();
 	}
-	$result = mysqli_query($db, "SELECT id FROM match_data ORDER BY id DESC LIMIT 1");
+	$result = mysqli_query($db, "SELECT id FROM csgo_match_data ORDER BY id DESC LIMIT 1");
 	if ( !$result ) {
 		die();
 	}
@@ -24,11 +24,11 @@
 	}
 
 	$last = $next;
-	$d2url = 'http://csgolounge.com/match?m=';
+	$match_url = 'http://csgolounge.com/match?m=';
 	$prevWasNotFound = false;
 
-	while ( page_found( $d2url . $next ) ){
-		$page = file_get_contents_curl($d2url.$next);
+	while ( page_found( $match_url . $next ) ){
+		$page = file_get_contents_curl($match_url.$next);
 
 		if (strlen($page) == 0) {
 			break;
@@ -77,16 +77,16 @@
 			$status = 'active';
 		}
 
-		$sql = mysqli_query($db, "INSERT INTO match_data (id, status, t1, t2) VALUES ($next, '{$status}', '{$team1}', '{$team2}')");
+		$sql = mysqli_query($db, "INSERT INTO csgo_match_data (id, status, t1, t2) VALUES ($next, '{$status}', '{$team1}', '{$team2}')");
 		$next++;
 	}
 
 	$lower_limit = $last - 10;
 	//then check any currently active ones for changes as well as last 10 (in case of downtime or errors)
-	$result2 = mysqli_query($db, "SELECT id FROM match_data WHERE status = 'active' OR (id > {$lower_limit} AND id < {$last})");
+	$result2 = mysqli_query($db, "SELECT id FROM csgo_match_data WHERE status = 'active' OR (id > {$lower_limit} AND id < {$last})");
 	if ( $result2 && mysqli_num_rows($result2) > 0 ) {
 		while ( $row = mysqli_fetch_assoc($result2) ) {
-			$page = file_get_contents_curl($d2url.$row['id']);
+			$page = file_get_contents_curl($match_url.$row['id']);
 
 			if (strlen($page) == 0) {
 				break;
@@ -118,7 +118,7 @@
 			if ( strpos($page, ' ago<') !== false ) {
 				$status = 'inactive';
 			}
-			$sql2 = mysqli_query($db, "UPDATE match_data SET status = '{$status}', t1 = '{$team1}', t2 = '{$team2}' WHERE id = {$curr_id}");
+			$sql2 = mysqli_query($db, "UPDATE csgo_match_data SET status = '{$status}', t1 = '{$team1}', t2 = '{$team2}' WHERE id = {$curr_id}");
 		}
 	}
 

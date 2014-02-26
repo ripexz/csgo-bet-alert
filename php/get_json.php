@@ -7,7 +7,7 @@
 
 	$json = "{\"matches\":[";
 
-	$result = mysqli_query($db, "SELECT id, t1, t2 FROM match_data WHERE status = 'active' ORDER BY id DESC");
+	$result = mysqli_query($db, "SELECT id, t1, t2 FROM csgo_match_data WHERE status = 'active' ORDER BY id DESC");
 	if ( $result && mysqli_num_rows($result) > 0 ) {
 		$first = true;
 		while ( $row = mysqli_fetch_assoc($result) ) {

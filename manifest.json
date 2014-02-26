@@ -13,11 +13,12 @@
 
 	"permissions": [
 		"http://*/*",
-		"tabs"
+		"tabs",
+		"alarms"
 	],
 
 	"background": {
-		"scripts": ["badge.min.js"]
+		"scripts": ["badge.js"]
 	},
 
 	"browser_action": {
