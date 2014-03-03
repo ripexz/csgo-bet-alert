@@ -24,11 +24,11 @@
 	}
 
 	$last = $next;
-	$match_url = 'http://csgolounge.com/match?m=';
+	$baseUrl = 'http://csgolounge.com/match?m=';
 	$notFoundCount = 0;
 
-	while ( page_found( $match_url . $next ) ){
-		$page = file_get_contents_curl($match_url.$next);
+	while ( page_found( $baseUrl . $next ) ){
+		$page = file_get_contents_curl($baseUrl.$next);
 
 		if (strlen($page) == 0) {
 			break;
@@ -38,8 +38,8 @@
 		}
 
 		if (strpos($page, $nfMsg) !== false) {
-			// Page is not found, check one ahead to see if its a gap
-			// then stop if it happens again
+			// Page is not found, check ahead to see if they've been deleted
+			// then stop if it happens 5 times in a row
 			if ($notFoundCount >= 4) {
 				// five 404s in a row, break loop:
 				break;
@@ -86,7 +86,7 @@
 	$result2 = mysqli_query($db, "SELECT id FROM csgo_match_data WHERE status = 'active' OR (id > {$lower_limit} AND id < {$last})");
 	if ( $result2 && mysqli_num_rows($result2) > 0 ) {
 		while ( $row = mysqli_fetch_assoc($result2) ) {
-			$page = file_get_contents_curl($match_url.$row['id']);
+			$page = file_get_contents_curl($baseUrl.$row['id']);
 
 			if (strlen($page) == 0) {
 				break;

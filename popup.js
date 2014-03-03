@@ -1,4 +1,4 @@
-var d2betalert = {
+var csgobetalert = {
 
 	reqUrl: 'http://www.ripexz.com/csgobetalert/get_json.php',
 
@@ -45,5 +45,5 @@ var d2betalert = {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-	d2betalert.getData();
+	csgobetalert.getData();
 });
