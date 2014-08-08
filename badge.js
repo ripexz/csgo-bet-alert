@@ -15,7 +15,7 @@ function addAlarm() {
 		if (typeof alarm == "undefined") {
 			chrome.alarms.create("csgobetalert", {
 				when: Date.now(),
-				periodInMinutes: 0.1
+				periodInMinutes: 5.0
 			});
 		}
 	});
