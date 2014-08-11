@@ -5,7 +5,7 @@ function updateBadge(data) {
 }
 function getMatchCount() {
 	var req = new XMLHttpRequest();
-	req.open("GET", 'http://www.ripexz.com/csgobetalert/get_json.php', true);
+	req.open("GET", 'http://eyeur.com/csgo/get_json.php', true);
 	req.onload = updateBadge.bind(this);
 	req.send(null);
 }

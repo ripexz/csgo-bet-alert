@@ -1,6 +1,6 @@
 var csgobetalert = {
 
-	reqUrl: 'http://www.ripexz.com/csgobetalert/get_json.php',
+	reqUrl: 'http://eyeur.com/csgo/get_json.php',
 
 	getData: function() {
 		var req = new XMLHttpRequest();
