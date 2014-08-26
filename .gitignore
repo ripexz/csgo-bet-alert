@@ -1,0 +1,5 @@
+.DS_Store
+*.min.js
+*.zip
+node_modules
+build

@@ -1,0 +1,36 @@
+{
+  "name": "csgo-bet-alert",
+  "version": "1.1.0",
+  "description": "A Chrome extension to keep track of active CS:GO Lounge matches.",
+  "main": "popup.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ripexz/csgo-bet-alert.git"
+  },
+  "keywords": [
+    "csgo",
+    "counter-strike",
+    "counter",
+    "strike",
+    "global",
+    "offensive",
+    "chrome",
+    "extension"
+  ],
+  "author": "ripexz <mail@ripexz.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ripexz/csgo-bet-alert/issues"
+  },
+  "homepage": "https://github.com/ripexz/csgo-bet-alert",
+  "devDependencies": {
+    "gulp": "^3.8.7",
+    "gulp-imagemin": "^1.0.1",
+    "gulp-load-plugins": "^0.5.3",
+    "gulp-uglify": "^0.3.1",
+    "gulp-zip": "^2.0.1"
+  }
+}

@@ -1,5 +1,8 @@
 <?php
 
+	$memcached = new Memcached();
+	$memcached->addServer('localhost', 11211);
+
 	//check for this message and stop work if servers are overloaded
 	$errMsg = "Servers are under very heavy load or item draft is under progress.";
 	$nfMsg = "Looks like there's no site that you´re looking for.";
@@ -120,6 +123,11 @@
 			}
 			$sql2 = mysqli_query($db, "UPDATE csgo_match_data SET status = '{$status}', t1 = '{$team1}', t2 = '{$team2}' WHERE id = {$curr_id}");
 		}
+	}
+
+	if ($next != $last || mysqli_num_rows($result2) > 0) {
+		// Invalidate cache:
+		$memcached->delete("csgo_match_data");
 	}
 
 	function file_get_contents_curl($url, $timeout = 0) {

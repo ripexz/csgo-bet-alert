@@ -1,12 +1,15 @@
-function updateBadge(data) {
-	var matchObj = JSON.parse(data.target.responseText);
-	var str_num = matchObj.matches.length + '';
-	chrome.browserAction.setBadgeText({text:str_num});
+function saveData(data) {
+	var matchObj = JSON.parse(data.target.responseText),
+		countStr = matchObj.matches.length + '';
+	chrome.browserAction.setBadgeText({text: countStr});
+
+	matchObj.valid = true;
+	chrome.storage.local.set({'csgomatches': matchObj});
 }
-function getMatchCount() {
+function getMatchData() {
 	var req = new XMLHttpRequest();
-	req.open("GET", 'http://www.ripexz.com/csgobetalert/get_json.php', true);
-	req.onload = updateBadge.bind(this);
+	req.open("GET", 'http://eyeur.com/csgo/get_json.php', true);
+	req.onload = saveData.bind(this);
 	req.send(null);
 }
 
@@ -22,7 +25,7 @@ function addAlarm() {
 }
 chrome.alarms.onAlarm.addListener(function(alarm) {
 	if (alarm.name == "csgobetalert") {
-		getMatchCount();
+		getMatchData();
 	}
 });
 chrome.runtime.onStartup.addListener(function() {
