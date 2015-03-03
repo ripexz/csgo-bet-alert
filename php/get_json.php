@@ -18,7 +18,7 @@
 
 	$json = "{\"matches\":[";
 
-	$result = mysqli_query($db, "SELECT id, t1, t2 FROM csgo_match_data WHERE status = 'active' ORDER BY id DESC");
+	$result = mysqli_query($db, "SELECT id, t1, t2, chance1, chance2 FROM csgo_match_data WHERE status = 'active' ORDER BY id DESC");
 	if ( $result && mysqli_num_rows($result) > 0 ) {
 		$first = true;
 		while ( $row = mysqli_fetch_assoc($result) ) {
@@ -28,7 +28,9 @@
 			$json .= '{';
 			$json .= '"id":' . $row['id'] . ',';
 			$json .= '"team1":"' . $row['t1'] . '",';
-			$json .= '"team2":"' . $row['t2'] . '"';
+			$json .= '"team2":"' . $row['t2'] . '",';
+			$json .= '"chance1":"' . $row['chance1'] . '",';
+			$json .= '"chance2":"' . $row['chance2'] . '"';
 			$json .= '}';
 			$first = false;
 		}

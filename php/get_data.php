@@ -75,12 +75,22 @@
 		$team1 = mysqli_real_escape_string($db, $team1);
 		$team2 = mysqli_real_escape_string($db, $team2);
 		
+		$chances = $doc->getElementsByTagName('i');
+		$chance1node = $chances->item(0);
+		$chance2node = $chances->item(1);
+
+		$chance1 = $chance1node->textContent;
+		$chance2 = $chance2node->textContent;
+
+		$chance1 = mysqli_real_escape_string($db, $chance1);
+		$chance2 = mysqli_real_escape_string($db, $chance2);
+
 		$status = 'inactive';
 		if ( strpos($page, ' ago<') === false ) {
 			$status = 'active';
 		}
 
-		$sql = mysqli_query($db, "INSERT INTO csgo_match_data (id, status, t1, t2) VALUES ($next, '{$status}', '{$team1}', '{$team2}')");
+		$sql = mysqli_query($db, "INSERT INTO csgo_match_data (id, status, t1, t2, chance1, chance2) VALUES ($next, '{$status}', '{$team1}', '{$team2}', '{$chance1}', '{$chance2}')");
 		$next++;
 	}
 
@@ -115,13 +125,23 @@
 
 			$team1 = mysqli_real_escape_string($db, $team1);
 			$team2 = mysqli_real_escape_string($db, $team2);
+
+			$chances = $doc->getElementsByTagName('i');
+			$chance1node = $chances->item(0);
+			$chance2node = $chances->item(1);
+
+			$chance1 = $chance1node->textContent;
+			$chance2 = $chance2node->textContent;
+
+			$chance1 = mysqli_real_escape_string($db, $chance1);
+			$chance2 = mysqli_real_escape_string($db, $chance2);
 			
 			$curr_id = $row['id'];
 			$status = 'active';
 			if ( strpos($page, ' ago<') !== false ) {
 				$status = 'inactive';
 			}
-			$sql2 = mysqli_query($db, "UPDATE csgo_match_data SET status = '{$status}', t1 = '{$team1}', t2 = '{$team2}' WHERE id = {$curr_id}");
+			$sql2 = mysqli_query($db, "UPDATE csgo_match_data SET status = '{$status}', t1 = '{$team1}', t2 = '{$team2}', chance1 = '{$chance1}', chance2 = '{$chance2}' WHERE id = {$curr_id}");
 		}
 	}
 

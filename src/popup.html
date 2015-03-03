@@ -3,14 +3,19 @@
 	<head>
 		<title>CS:GO Bet Alert</title>
 		<style>
-			body {min-width:250px;min-height:50px;overflow-x:hidden;font-family:Arial,sans-serif;margin:0;font-size:13px;background:#EEE;}
+			body {min-width:320px;min-height:50px;overflow-x:hidden;font-family:Arial,sans-serif;margin:0;font-size:13px;background:#EEE;}
 			h1 {font-size:16px;margin:0;text-align:center;padding:2px 5px;border-bottom:1px solid #EEE;}
 			p {margin:0;cursor:pointer;padding:2px 5px;text-align:center;border-bottom:1px solid #EEE;height:14px;}
 			p:hover {background: rgba(0,0,0,0.2);}
-			p span.t1 {margin-left:5px;float:left;}
-			p span.t2 {margin-right:5px;float:right;}
-			p span.vs {font-weight:bold;position:fixed;left:50%;}
-			span.t1, span.t2 {max-width:100px;overflow:hidden;}
+			p div {position:absolute;}
+			p div.t1 {left:40px;}
+			p div.t2 {right:40px;}
+			p div.vs {font-weight:bold;left:50%;margin-left:-8px;}
+			div.t1, div.t2 {text-overflow:ellipsis;white-space:nowrap;width:100px;text-align:center;}
+			div.chance1 {left:5px;font-style:italic;font-size:11px;}
+			div.chance2 {right:5px;font-style:italic;font-size:11px;}
+			.lower {color:red;}
+			.higher {color:green;}
 		</style>
 	</head>
 	<body>

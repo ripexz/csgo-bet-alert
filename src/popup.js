@@ -35,7 +35,18 @@ var csgobetalert = {
 			for (var i = 0; i < matchObj.matches.length; i++) {
 				var p = document.createElement('p');
 				p.id = matchObj.matches[i].id + '';
-				p.innerHTML = '<span class="t1">'+matchObj.matches[i].team1+'</span><span class="vs">vs</span><span class="t2">'+matchObj.matches[i].team2+'</span>';
+
+				var chance1 = parseInt(matchObj.matches[i].chance1, 10),
+					chance2 = parseInt(matchObj.matches[i].chance2, 10),
+					c1class = chance1 >= chance2 ? 'higher' : 'lower',
+					c2class = chance2 >= chance1 ? 'higher' : 'lower';
+
+				p.innerHTML = '<div class="chance1 '+c1class+'">'+matchObj.matches[i].chance1+'</div>';
+				p.innerHTML += '<div class="t1">'+matchObj.matches[i].team1+'</div>';
+				p.innerHTML += '<div class="vs">vs</div>';
+				p.innerHTML += '<div class="t2">'+matchObj.matches[i].team2+'</div>';
+				p.innerHTML += '<div class="chance2 '+c2class+'">'+matchObj.matches[i].chance2+'</div>';
+
 				document.getElementById('match_list').appendChild(p);
 			}
 			countStr = i + '';
