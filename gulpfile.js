@@ -12,7 +12,7 @@ gulp.task('manifest', function() {
 });
 gulp.task('scripts', function() {
 	gulp.src(paths.src + '/*.js')
-		.pipe($.uglify({ mangle: true }))
+		//.pipe($.uglify({ mangle: true }))
 		.pipe(gulp.dest(paths.build));
 });
 gulp.task('markup', function() {
